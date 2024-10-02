@@ -23,7 +23,7 @@ Cookie-Parser for handling cookies.
 
 # Setup Instructions:
 Clone the repository:
-git clone https://github.com/JaiLohana16/JWT-Authentication.git
+git clone https://github.com/JaiLohana16/JWT-Authentication-.git
 
 # Install dependencies:
 npm install
