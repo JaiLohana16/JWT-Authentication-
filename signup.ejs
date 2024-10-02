@@ -1,0 +1,76 @@
+<%- include('partials/header'); -%>
+
+    <form>
+        <h2>Sign Up</h2>
+        <label for="Email">Email</label>
+        <input type="text" name="email" required>
+        <div class="email error"></div>
+
+        <label for="Password">Password</label>
+        <div class="password-container" style="display: flex; align-items: center; gap: 10px;">
+            <input type="password" name="password" required
+                id="password-input">
+            <div id="toggle-password" style="cursor: pointer;"> 👁️</div>
+            
+        </div>
+        <div class="password error"></div>
+
+        <button>Sign Up</button>
+    </form>
+
+    <script>
+        const form = document.querySelector('form')
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault()
+
+            // get the values
+            const email = form.email.value
+            const password = form.password.value
+            // console.log(email,password)
+            document.querySelector('.email.error').textContent=" "
+            document.querySelector('.password.error').textContent=" "
+            try {
+    const result = await fetch('/signup', {
+        method: "POST",
+        body: JSON.stringify({ email,password }),
+        headers: { "Content-Type": "application/json" }
+    });
+  
+    const data = await result.json();
+    
+    
+    if (result.ok) {
+        console.log('Signup successful');
+        // Redirect or show success message
+        location.assign('/login')
+        
+    } else {
+        console.log('Signup failed', data);
+        // Display the error messages in the form
+        document.querySelector('.email.error').textContent = data.email || '';
+        document.querySelector('.password.error').textContent = data.password || '';
+    }
+} catch (error) {
+    console.log(error);
+}
+
+
+        })
+
+        
+        document.addEventListener('DOMContentLoaded', function() {
+    const togglePassword = document.getElementById('toggle-password');
+    const passwordInput = document.getElementById('password-input');
+
+    togglePassword.addEventListener('click', function() {
+        // Toggle the type attribute
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+
+        //  change the icon
+        this.textContent = type === 'password' ?  '👁️'  : '👁️‍🗨️'; // Change icon based on visibility
+    })
+    });
+    </script>
+
+    <%- include('partials/footer'); -%>
