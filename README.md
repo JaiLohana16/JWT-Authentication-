@@ -1,4 +1,4 @@
-#JWT Authentication System for Ninja Smoothies 🍹
+# JWT Authentication System for Ninja Smoothies 🍹
 A full-stack authentication system using Node.js, Express, MongoDB, and JWT (JSON Web Token). The app allows users to sign up, log in, and access protected routes with secure authentication. The system is built with security in mind, leveraging JWT for user sessions and cookie-based storage for tokens.
 
 Features:
