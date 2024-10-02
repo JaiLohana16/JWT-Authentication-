@@ -21,7 +21,7 @@ userSchema.post('save',function(doc,next){
   console.log(`new user was created and saved ${doc}`)
   next()
 })
-// here post means do someting after something happens so post that do this .............  and does not refer to post request 
+
 
 
 
@@ -32,10 +32,7 @@ userSchema.pre('save',async function(next){
   this.password=await bcrypt.hash(this.password,salt)
   next()
   
-  // cant use arrow function here and only next is given doc is not cause before doc is created this runs and locally email and password variables were created and so those are reffered as this.email and this.password
-
-  // To access the document (this) inside Mongoose middleware, you need to use a regular function rather than an arrow function, because regular functions correctly bind this to the document being saved.
-
+ 
 })
 
 
@@ -58,5 +55,5 @@ userSchema.statics.login=async function(email1,password1){
 
 
 const User=mongoose.model('user',userSchema)
-// have named collection as users that is compoulsory and have named here as user thats also compulsory
+
 module.exports=User
